@@ -23,6 +23,7 @@ import (
 	"k8s.io/apimachinery/pkg/util/intstr"
 	"k8s.io/client-go/kubernetes"
 	k8sApi "k8s.io/client-go/pkg/api/v1"
+	istio "github.com/jetstack/kube-lego/pkg/provider/istio"
 )
 
 var _ kubelego.KubeLego = &KubeLego{}
@@ -112,6 +113,9 @@ func (kl *KubeLego) Init() {
 			break
 		case "nginx":
 			kl.legoIngressProvider["nginx"] = nginx.New(kl)
+			break
+		case "istio":
+			kl.legoIngressProvider["istio"] = istio.New(kl)
 			break
 		default:
 			kl.Log().Warnf("Unsupported provider [%s], please add a handler in kubelego.go#Init()", provider)

@@ -6,6 +6,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
+	"os"
 )
 
 func (kl *KubeLego) InitKube() error {
@@ -17,7 +18,7 @@ func (kl *KubeLego) InitKube() error {
 
 		// fall back to kubeconfig
 		// TODO: Link to kubeconfig
-		config, err = clientcmd.BuildConfigFromFlags("", "kubeconfig")
+		config, err = clientcmd.BuildConfigFromFlags("", os.Getenv("KUBECONFIG"))
 		if err != nil {
 			kl.Log().Warnf("failed to create kubeconfig client: %v.", err)
 			return errors.New("kube init failed as both in-cluster and dev connection unavailable")
