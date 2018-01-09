@@ -20,8 +20,12 @@ func (kl *KubeLego) InitKube() error {
 		// TODO: Link to kubeconfig
 		config, err = clientcmd.BuildConfigFromFlags("", os.Getenv("KUBECONFIG"))
 		if err != nil {
-			kl.Log().Warnf("failed to create kubeconfig client: %v.", err)
-			return errors.New("kube init failed as both in-cluster and dev connection unavailable")
+			config, err = clientcmd.BuildConfigFromFlags("", os.Getenv("HOME") + "/.kube/config")
+
+			if err != nil {
+				kl.Log().Warnf("failed to create kubeconfig client: %v.", err)
+				return errors.New("kube init failed as both in-cluster and dev connection unavailable")
+			}
 		}
 	}
 	kl.Log().Info("connecting to kubernetes api: ", config.Host)

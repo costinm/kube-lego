@@ -98,7 +98,7 @@ func (p *Istio) updateIngress() error {
 	rules := []k8sExtensions.IngressRule{}
 	paths := []k8sExtensions.HTTPIngressPath{
 		k8sExtensions.HTTPIngressPath{
-			Path: kubelego.AcmeHttpChallengePath,
+			Path: kubelego.AcmeHttpChallengePath + "/.*", // istio-specific
 			Backend: k8sExtensions.IngressBackend{
 				ServiceName: p.kubelego.LegoServiceNameNginx(),
 				ServicePort: p.kubelego.LegoHTTPPort(),

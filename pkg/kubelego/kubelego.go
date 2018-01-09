@@ -288,7 +288,7 @@ func (kl *KubeLego) paramsLego() error {
 	if len(kl.legoServiceNameNginx) == 0 {
 		kl.legoServiceNameNginx = os.Getenv("LEGO_SERVICE_NAME")
 		if len(kl.legoServiceNameNginx) == 0 {
-			kl.legoServiceNameNginx = "kube-lego-nginx"
+			kl.legoServiceNameNginx = "kube-lego"
 		}
 	}
 

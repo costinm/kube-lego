@@ -85,7 +85,7 @@ docker_%:
 	# remove container
 	docker rm $(CONTAINER_ID)
 
-image: docker_all version
+image: docker_build version
 	docker build --build-arg VCS_REF=$(GIT_COMMIT) -t $(DOCKER_IMAGE):$(BUILD_TAG) .
 	
 push: image

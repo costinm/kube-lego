@@ -113,7 +113,7 @@ func (s *Service) SetKubeLegoSpec() {
 			k8sApi.ServicePort{
 				Port:       int32(port.IntValue()),
 				TargetPort: port,
-				Protocol:   "TCP",
+				Name: "http",
 			},
 		}
 	}
