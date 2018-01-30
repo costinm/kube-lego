@@ -28,7 +28,7 @@ metadata:
   namespace: istio-system
 data:
   # modify this to specify your address
-  lego.email: "costin@google.com"
+  lego.email: "user@example.com"
   # use letsencrypt's production api (real certs)
   lego.url: "https://acme-v01.api.letsencrypt.org/directory"
 
